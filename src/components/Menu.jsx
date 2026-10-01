@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   House,
   FolderKanban,
@@ -23,6 +24,8 @@ const menuItems = [
 ];
 
 export default function Menu() {
+  const [projectsOpen, setProjectsOpen] = useState(false);
+
   return (
     <div className="flex flex-1 flex-col px-5">
       <div className="mb-5 flex items-center gap-3">
@@ -45,9 +48,45 @@ export default function Menu() {
       <nav className="mt-5 space-y-1">
         {menuItems.map((item) => {
           const Icon = item.icon;
+
+          if (item.label === "Projects") {
+            return (
+              <div key={item.label}>
+                <button
+                  type="button"
+                  onClick={() => setProjectsOpen((value) => !value)}
+                  className="flex w-full items-center gap-4 rounded-md px-4 py-3 text-left text-slate-600 transition hover:bg-slate-100"
+                  aria-expanded={projectsOpen}
+                >
+                  <Icon size={19} />
+                  <span className="flex-1 font-medium">{item.label}</span>
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-200 ${projectsOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {projectsOpen && (
+                  <div className="ml-12 mt-1 space-y-1">
+                    {["Web platform", "Mobile app", "AI platform"].map((project) => (
+                      <button
+                        key={project}
+                        type="button"
+                        className="block w-full rounded-md px-3 py-2 text-left text-sm text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+                      >
+                        {project}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          }
+
           return (
             <button
               key={item.label}
+              type="button"
               className={`flex w-full items-center gap-4 rounded-md px-4 py-3 text-left transition ${
                 item.active
                   ? "bg-cyan-100 text-slate-700"
@@ -56,18 +95,17 @@ export default function Menu() {
             >
               <Icon size={19} />
               <span className="flex-1 font-medium">{item.label}</span>
-              {item.dropdown && <ChevronDown size={18} />}
             </button>
           );
         })}
       </nav>
 
       <div className="mt-auto space-y-2 pb-3">
-        <button className="flex w-full items-center gap-4 px-4 py-3 text-slate-600">
+        <button type="button" className="flex w-full items-center gap-4 px-4 py-3 text-slate-600">
           <HelpCircle size={20} />
           <span>Help center</span>
         </button>
-        <button className="flex w-full items-center gap-4 px-4 py-3 text-slate-600">
+        <button type="button" className="flex w-full items-center gap-4 px-4 py-3 text-slate-600">
           <LogOut size={20} />
           <span>Log out</span>
         </button>

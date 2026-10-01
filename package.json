@@ -1,21 +1,26 @@
 {
-  "name": "kanban-tailwind",
+  "name": "kanban-tailwind-json-server",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "json-server --watch src/data/tasks.json --port 3001",
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
     "build": "vite",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
     "@tailwindcss/vite": "latest",
+    "concurrently": "latest",
+    "json-server": "^0.17.4",
     "lucide-react": "latest",
     "react": "latest",
     "react-dom": "latest",
     "tailwindcss": "latest",
     "vite": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@vitejs/plugin-react": "latest"
+  }
 }
