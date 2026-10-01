@@ -2,22 +2,6 @@
 
 React + Vite + Tailwind CSS + JSON Server.
 
-## Features
-
-- Collapsible Projects menu
-- Collapsible Labels section
-- Add / Edit / Delete tasks
-- Task data stored in `src/data/tasks.json`
-- Real CRUD requests through JSON Server
-- Search starts after 3 characters and filters cards by title
-- Search is case-insensitive
-- Add Task modal with validation
-- Priority and status enums
-- Tag checkboxes
-- Responsive Tailwind layout
-
-## Run
-
 Install dependencies:
 
 ```bash
