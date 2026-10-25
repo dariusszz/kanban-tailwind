@@ -173,8 +173,7 @@ export default function TaskModal({
                 <option value="high">High</option>
                 <option value="medium">Medium</option>
                 <option value="low">Low</option>
-                <option value="green">On priority</option>
-              </select>
+                </select>
             </div>
 
             <div>

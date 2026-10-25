@@ -25,7 +25,7 @@
         "New Feature",
         "iOS"
       ],
-      "priority": "green",
+      "priority": "medium",
       "days": 5,
       "users": [
         "https://i.pravatar.cc/100?img=32",
@@ -75,7 +75,7 @@
         "New Feature",
         "iOS"
       ],
-      "priority": "green",
+      "priority": "medium",
       "days": 6,
       "users": [
         "https://i.pravatar.cc/100?img=11",

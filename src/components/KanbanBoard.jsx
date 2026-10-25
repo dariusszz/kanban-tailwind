@@ -23,6 +23,7 @@ export default function KanbanBoard({
   searchTerm,
   openAddTask,
   onCloseAddTask,
+  selectedPriority,
 }) {
   const [tasks, setTasks] = useState([]);
   const [editingTask, setEditingTask] = useState(null);
@@ -66,12 +67,18 @@ export default function KanbanBoard({
   const filteredTasks = useMemo(() => {
     const normalized = searchTerm.trim().toLowerCase();
 
-    if (normalized.length < 3) return tasks;
+    let result = tasks;
 
-    return tasks.filter((task) =>
-      task.title.toLowerCase().includes(normalized)
-    );
-  }, [tasks, searchTerm]);
+    if (normalized.length >= 3) {
+      result = result.filter((task) => task.title.toLowerCase().includes(normalized));
+    }
+
+    if (selectedPriority) {
+      result = result.filter((task) => (task.priority === "green" ? "medium" : task.priority) === selectedPriority);
+    }
+
+    return result;
+  }, [tasks, searchTerm, selectedPriority]);
 
   const openCreateModal = (status = "todo") => {
     setEditingTask(null);
